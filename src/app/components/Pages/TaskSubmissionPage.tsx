@@ -91,6 +91,9 @@ const TaskSubmissionPage = () => {
     }, [])
 
     // AI Group Analysis
+    // TOOD: We would use the result from `generateAIReasoning` to populate this
+    // list. However, I do not want to keep querying the AI model to test so I will
+    // just 'cache' it and display it.
     const analyzeTask = async () => {
         if (!briefDescription.trim()) return
 
@@ -160,6 +163,9 @@ const TaskSubmissionPage = () => {
         setStep('group-selection')
     }
 
+    // TOOD: We would use the result from `generateAIReasoning` to populate this
+    // list. However, I do not want to keep querying the AI model to test so I will
+    // just 'cache' it and display it.
     const allBankGroups: BankGroup[] = [
         {
             id: 'fund-finance',
@@ -339,7 +345,7 @@ const TaskSubmissionPage = () => {
     //     
     //     CONTEXT:
     //     - SMBC Group is the 13th largest bank globally with operations in 40+ countries
-    //     - We have $2.3T in assets and serve over 1,000 corporate clients worldwide
+    //     - We have $2.0T+ in assets and serve over 1,000 corporate clients worldwide
     //     - Our expertise spans private equity, real estate, M&A, treasury services, and capital markets
     //     
     //     TASK:
