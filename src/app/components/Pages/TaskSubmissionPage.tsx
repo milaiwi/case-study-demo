@@ -205,6 +205,10 @@ const TaskSubmissionPage = () => {
         }
     ]
 
+    // TODO: This code is way too junky and unnecessary
+    // I found the pdfWorker and builder off of stackoverflow
+    // But I do not think we actually need it.
+    // We can do a simple read traversal
     const readPDFContent = async (file: File): Promise<string> => {
         try {
             // Use the main build with local worker
@@ -320,7 +324,117 @@ const TaskSubmissionPage = () => {
         }
     }
 
-    // Generate AI reasoning for team selection
+    // Generate a response from the AI model
+    // const getResponseFromAI = async (briefDescription: string) => {
+    //     const response = await fetch('/api/ai', {
+    //         method: 'POST',
+    //         body: JSON.stringify({ briefDescription })
+    //     })
+    //     return response.json()
+    // }
+
+    // const generateAIReasoning = getResponseFromAI(`
+    //     You are an expert banking and financial services consultant at SMBC Group, a leading global financial institution.
+    //     Your role is to analyze client brief descriptions and provide intelligent team recommendations with detailed reasoning.
+    //     
+    //     CONTEXT:
+    //     - SMBC Group is the 13th largest bank globally with operations in 40+ countries
+    //     - We have $2.3T in assets and serve over 1,000 corporate clients worldwide
+    //     - Our expertise spans private equity, real estate, M&A, treasury services, and capital markets
+    //     
+    //     TASK:
+    //     Analyze the client's brief description and generate a comprehensive response that includes:
+    //     1. Team recommendation with confidence score (0-100%)
+    //     2. Detailed reasoning for the recommendation
+    //     3. SMBC's relevant expertise and track record
+    //     4. Keyword analysis from the client's description
+    //     5. Market positioning and competitive advantages
+    //     
+    //     RESPONSE FORMAT:
+    //     {
+    //         "department": "[Team Name]",
+    //         "confidence_score": [0-100],
+    //         "key_findings": [
+    //             {
+    //                 "title": "[Analysis Title]",
+    //                 "content": "[Detailed analysis content with specific SMBC data points, transaction examples, and market insights]"
+    //             },
+    //             {
+    //                 "title": "[SMBC Expertise]",
+    //                 "content": "[Relevant SMBC track record, deal examples, and market position with specific metrics]"
+    //             },
+    //             {
+    //                 "title": "[Keyword Analysis]",
+    //                 "content": "[Analysis of specific terms from client description and how they align with team expertise]"
+    //             },
+    //             {
+    //                 "title": "[Market Context]",
+    //                 "content": "[Industry insights, market trends, and competitive positioning relevant to the client's needs]"
+    //             }
+    //         ],
+    //         "alternative_teams": [
+    //             {
+    //                 "team": "[Alternative Team Name]",
+    //                 "reasoning": "[Why this team might also be relevant]",
+    //                 "confidence": [0-100]
+    //             }
+    //         ]
+    //     }
+    //     
+    //     ANALYSIS REQUIREMENTS:
+    //     - Use specific SMBC data points (deal sizes, transaction counts, market rankings)
+    //     - Include relevant industry statistics and market trends
+    //     - Provide concrete examples of similar transactions or client types
+    //     - Analyze keyword patterns in the client description
+    //     - Consider cross-selling opportunities with other SMBC teams
+    //     - Factor in client's potential AUM, deal size, and strategic importance
+    //     
+    //     TEAM EXPERTISE AREAS:
+    //     - Fund Finance: Subscription lines, NAV financing, fund-level debt, private equity support
+    //     - Cash Management: Liquidity management, treasury services, cash flow optimization
+    //     - M&A Finance: Acquisition financing, leveraged buyouts, M&A advisory
+    //     - Real Estate: REIT financing, property investment, real estate debt
+    //     - Capital Markets: Debt capital markets, syndicated loans, structured finance
+    //     - Trade Finance: International trade, letters of credit, supply chain finance
+    //     
+    //     EXAMPLE FOR FUND FINANCE:
+    //     {
+    //         "department": "Fund Finance Solutions",
+    //         "confidence_score": 95,
+    //         "key_findings": [
+    //             {
+    //                 "title": "SMBC Fund Finance Leadership",
+    //                 "content": "SMBC Group has been arranging subscription financing for private equity funds and asset manager clients since 1999. Over the last five years, we have originated and arranged over US$40bn in transactions globally, making us a top 3 arranger in the fund finance space. Our team has structured over 500 subscription line facilities across all major fund strategies including buyout, growth, venture capital, and real estate."
+    //             },
+    //             {
+    //                 "title": "Market Position & Innovation",
+    //                 "content": "We apply a client-led, multi-product approach, working closely with other product partners within the bank to deliver bespoke fund financing solutions. SMBC has pioneered innovative structures including net asset value-based financing and hybrid fund financing solutions. Our average facility size is $150M with the largest transaction at $2.5B."
+    //             },
+    //             {
+    //                 "title": "Keyword Analysis",
+    //                 "content": "Your description mentions 'fund' and 'liquidity needs', which directly aligns with our Fund Finance Solutions team's core expertise in subscription lines of credit and fund-level debt solutions. The mention of 'private equity' indicates you're likely seeking institutional-grade financing solutions."
+    //             },
+    //             {
+    //                 "title": "Industry Context",
+    //                 "content": "The fund finance market has grown to over $400B globally, with subscription lines representing the fastest-growing segment. SMBC has captured 15% market share in the US fund finance market and serves 80% of the top 50 private equity firms globally."
+    //             }
+    //         ],
+    //         "alternative_teams": [
+    //             {
+    //                 "team": "Cash Management & Treasury",
+    //                 "reasoning": "May also be relevant for broader liquidity management needs beyond fund-specific financing",
+    //                 "confidence": 65
+    //             }
+    //         ]
+    //     }
+    //     
+    //     CLIENT DESCRIPTION TO ANALYZE: ${briefDescription}
+    // `)
+
+
+    // TODO: This is just the cached result that I previously got from the AI model
+    // I do not want to keep querying it to test so I will just 'cache' it and 
+    // display it.
     const generateAIReasoning = (group: BankGroup, briefDescription: string) => {
         const reasoning: { title: string; content: string }[] = []
         
@@ -466,7 +580,7 @@ const TaskSubmissionPage = () => {
                                     id="briefDescription"
                                     value={briefDescription}
                                     onChange={(e) => setBriefDescription(e.target.value)}
-                                    placeholder="e.g., I am starting a new fund and hoping to open a subscription line of credit with SMBC, or I want some liquidity for my new private equity fund..."
+                                    placeholder="e.g., I am interested in settling approved invoices submitted to me, or I want some liquidity for my new private equity fund..."
                                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[120px]"
                                     required
                                 />

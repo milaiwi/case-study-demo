@@ -208,7 +208,7 @@ const ProjectsPage = () => {
                                 {/* Financial Documents */}
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle className="text-base">🧾 Corporate Financial Documents</CardTitle>
+                                        <CardTitle className="text-base">Corporate Financial Documents</CardTitle>
                                         <CardDescription>
                                             Recent audited financial statements, cash flow statements, balance sheets, income statements
                                         </CardDescription>
@@ -231,7 +231,7 @@ const ProjectsPage = () => {
                                 {/* Banking Infrastructure */}
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle className="text-base">🏦 Banking & Treasury Infrastructure</CardTitle>
+                                        <CardTitle className="text-base">Banking & Treasury Infrastructure</CardTitle>
                                         <CardDescription>
                                             Bank accounts list, current banking partners, fee analysis, treasury policy, cash pooling arrangements
                                         </CardDescription>
@@ -254,7 +254,7 @@ const ProjectsPage = () => {
                                 {/* Cash Flow Operations */}
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle className="text-base">🔁 Cash Flow Operations & Working Capital</CardTitle>
+                                        <CardTitle className="text-base">Cash Flow Operations & Working Capital</CardTitle>
                                         <CardDescription>
                                             AR/AP aging reports, payment schedules, seasonal cash flow data, investment portfolios
                                         </CardDescription>
@@ -300,7 +300,7 @@ const ProjectsPage = () => {
                                 {/* Treasury Systems */}
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle className="text-base">📑 Treasury Management System (TMS) or ERP Setup</CardTitle>
+                                        <CardTitle className="text-base">Treasury Management System (TMS) or ERP Setup</CardTitle>
                                         <CardDescription>
                                             System architecture diagrams, file formats, integration points with banks
                                         </CardDescription>
@@ -388,19 +388,19 @@ const ProjectsPage = () => {
                                                     </div>
                                                     <div className="text-sm text-gray-600 space-y-1">
                                                         {submission.documents.financialDocuments.length > 0 && (
-                                                            <div>🧾 Financial: {submission.documents.financialDocuments.join(', ')}</div>
+                                                            <div>Financial: {submission.documents.financialDocuments.join(', ')}</div>
                                                         )}
                                                         {submission.documents.bankingInfrastructure.length > 0 && (
-                                                            <div>🏦 Banking: {submission.documents.bankingInfrastructure.join(', ')}</div>
+                                                            <div>Banking: {submission.documents.bankingInfrastructure.join(', ')}</div>
                                                         )}
                                                         {submission.documents.cashFlowOperations.length > 0 && (
-                                                            <div>🔁 Cash Flow: {submission.documents.cashFlowOperations.join(', ')}</div>
+                                                            <div>Cash Flow: {submission.documents.cashFlowOperations.join(', ')}</div>
                                                         )}
                                                         {submission.documents.internalControls.length > 0 && (
-                                                            <div>📜 Controls: {submission.documents.internalControls.join(', ')}</div>
+                                                            <div>Controls: {submission.documents.internalControls.join(', ')}</div>
                                                         )}
                                                         {submission.documents.treasurySystems.length > 0 && (
-                                                            <div>📑 Systems: {submission.documents.treasurySystems.join(', ')}</div>
+                                                            <div>Systems: {submission.documents.treasurySystems.join(', ')}</div>
                                                         )}
                                                     </div>
                                                 </div>
